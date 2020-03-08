@@ -111,7 +111,7 @@ class CronPlus {
 	 * @return void
 	 */
 	public function deactivate() {
-		$this->clear_schedule();
+		$this->clear_schedule_by_hook();
 		if ( !is_multisite() || wp_is_large_network() ) {
 			return;
 		}
@@ -122,7 +122,7 @@ class CronPlus {
 
 		foreach ( $sites as $site ) {
 			switch_to_blog( $site );
-			$this->clear_schedule();
+			$this->clear_schedule_by_hook();
 		}
 		restore_current_blog();
 
